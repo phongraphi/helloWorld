@@ -1,0 +1,11 @@
+{
+  "name": "sort-app",
+  "version": "1.0.0",
+  "description": "A sort application",
+  "main": "index.js",
+  "scripts": {
+    "start": "electron index.js"
+  },
+  "author": "Aveta_Vos <avetavos@hotmail.com>",
+  "license": "MIT"
+}

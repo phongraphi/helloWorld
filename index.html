@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="icon" href="img/icon.gif" type="image/gif">
+    <title>Sort Application</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.0.min.js"></script>
+    <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.0.js"></script>
+    <link rel="stylesheet" href="css/style.css">
+    <script>
+        alert('กรุณากรอกตัวเลขแล้ว "-" เพื่อตัวเลขต่อไป');
+        $(document).ready(function() {
+            $("#intToCal").keydown(function(e) {
+                // Allow: backspace, delete, tab, escape, enter . and -
+                if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 110, 190, 189, 109]) !== -1 ||
+                    // Allow: Ctrl+A, Command+A
+                    (e.keyCode === 65 && (e.ctrlKey === true || e.metaKey === true)) ||
+                    // Allow: home, end, left, right, down, up
+                    (e.keyCode >= 35 && e.keyCode <= 40)) {
+                    // let it happen, don't do anything
+                    return;
+                }
+                // Ensure that it is a number and stop the keypress
+                if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) {
+                    e.preventDefault();
+                }
+            });
+            $('#intToCal').keyup(function() {
+                if ($('#intToCal').val().length != 0)
+                    $('#calBtn').attr('disabled', false);
+                else
+                    $('#calBtn').attr('disabled', true);
+            })
+        });
+    </script>
+</head>
+<body>
+    <header>
+        <div class="jumbotron font-fix">
+            <h1 class="head-mar">Sort Number Application</h1>
+        </div>
+    </header>
+    <div class="form-horizontal container" id="mainFrp">
+        <div class="#">
+            <input type="text" id="intToCal" name="intToCal" class="form-control" value="">
+        </div>
+        <div class="col-lg-6 col-lg-offset-3 font-fix radio-font-size padding-form">
+            <div class="radio">
+                <input type="radio" name="option" id="bubble" value="bubble" checked><label for="bubble">Bubble Sort</label>
+            </div>
+            <div class="radio">
+                <input type="radio" name="option" id="insert" value="insert"><label for="insert">Insertion Sort</label>
+            </div>
+            <div class="radio">
+                <input type="radio" name="option" id="select" value="select"><label for="select">Selection Sort</label>
+            </div>
+            <div class="radio">
+                <input type="radio" name="option" id="quick" value="quick"><label for="quick">Quick Sort</label>
+            </div>
+            <div class="radio">
+                <input type="radio" name="option" id="merge" value="merge"><label for="merge">Merge Sort</label>
+            </div>
+        </div>
+        <div class="col-lg-6 col-lg-offset-3 text-center margin-around">
+            <button type="button" class="btn btn-success btn-lg font-fix btn-size btn-font-size" name="calBtn" id="calBtn" onclick="sortInt('option')" disabled>Sort</button>
+            <script src="js/sort.js"></script>
+        </div>
+    </div>
+</body>
+</html>
